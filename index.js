@@ -3,9 +3,9 @@ const axios = require('axios');
 const http = require('http');
 const nodemailer = require('nodemailer');
 
-const SENDER_MAIL = process.env.SENDER_MAIL;
-const SENDER_PASS = process.env.SENDER_PASS;
-const RECIEVER_MAIL = process.env.RECIEVER_MAIL;
+const SENDER_MAIL = process.env.SENDER_MAIL.trim();
+const SENDER_PASS = process.env.SENDER_PASS.trim();
+const RECIEVER_MAIL = process.env.RECIEVER_MAIL.trim();
 
 // Get html of url
 const getHtml = async (url) => {
@@ -44,6 +44,9 @@ const sendMail = async (price) => {
     subject: 'Important: Price dropped',
     text: `The price dropped to ${price}!`,
   };
+
+  console.log(SENDER_MAIL, SENDER_PASS, RECIEVER_MAIL);
+  console.log("Sending mail...")
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
