@@ -48,13 +48,17 @@ const sendMail = async (price) => {
   console.log(SENDER_MAIL, SENDER_PASS, RECIEVER_MAIL);
   console.log("Sending mail...")
 
-  transporter.sendMail(mailOptions, (err, info) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
+  const senMail = new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve('Email sent: ' + info.response);
+      }
+    });
   });
+
+  console.log(await senMail);
 };
 
 http
