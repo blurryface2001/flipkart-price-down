@@ -45,7 +45,6 @@ const sendMail = async (price) => {
     text: `The price dropped to ${price}!`,
   };
 
-  console.log(SENDER_MAIL, SENDER_PASS, RECIEVER_MAIL);
   console.log("Sending mail...")
 
   const senMail = new Promise((resolve, reject) => {
