@@ -13,6 +13,7 @@ const getHtml = async (url) => {
     const { data } = await axios.get(url);
     return data;
   } catch (err) {
+    sendMail(err);
     console.log(err);
   }
 };
@@ -66,7 +67,7 @@ http
       const price = await getFlipkartPrice(
         'https://www.flipkart.com/nothing-phone-1-black-128-gb/p/itmeea53a564de47'
       );
-      if (price < 30001) {
+      if (price < 29000) {
         await sendMail(price);
         console.log('Price dropped');
         res.write('Price dropped');
